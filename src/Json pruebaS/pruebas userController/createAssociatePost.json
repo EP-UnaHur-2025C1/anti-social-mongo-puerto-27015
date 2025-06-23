@@ -1,0 +1,22 @@
+[
+    {
+        "descripcion": "post de prueba 1",
+        "creado": "2020-05-01"
+    },
+    {
+        "descripcion": "post de prueba 2",
+        "creado": "2020-05-02"
+    },
+    {
+        "descripcion": "post de prueba 3",
+        "creado": "2020-05-03"
+    },
+    {
+        "descripcion": "post de prueba 4",
+        "creado": "2020-05-04"
+    },
+    {
+        "descripcion": "post de prueba 5",
+        "creado": "2020-05-05"
+    }
+]

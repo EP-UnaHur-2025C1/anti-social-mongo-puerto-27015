@@ -1,0 +1,812 @@
+openapi: 3.0.4
+info:
+  title: TP Estrategias de Persistencia - Red Anti-Social
+  description: |- 
+    Documentacion de la API Red Social
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:3005
+    description: servidor local
+components:
+  parameters:
+    UserIdParam:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: ID del usuario
+    PostIdParam:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: ID del post
+    ImageIdParam:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: ID de la imagen
+    TagIdParam:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: ID del tag
+    CommentIdParam:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: ID del comentario
+    postId:
+      name: postId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: ID del post
+    userId:
+      name: userId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: ID del usuario
+  schemas:
+    User:
+      type: object
+      properties:
+        nickName:
+          type: string
+          example: usuario123
+        fechaNacimiento:
+          type: date
+          example: '2025-01-01'
+        email:
+          type: string
+          example: usuario@example.com
+    Post:
+      type: object
+      properties:
+        descripcion:
+          type: string
+          example: Este es un nuevo post
+        creado:
+          type: string
+          format: date
+          example: '2025-01-01'
+        userId:
+          type: integer
+          example: 1
+    Post_image:
+      type: object
+      properties:
+        url:
+          type: string
+          example: nuevaUrlImagen1
+        postId:
+          type: integer
+          example: 1
+    Tag:
+      type: object
+      properties:
+        nombre:
+          type: string
+          example: nuevaEtiqueta1
+        postId:
+          type: integer
+          example: 1
+    Comment:
+      type: object
+      properties:
+        contenido:
+          type: string
+          example: Este es un comentario nuevo.
+        creado:
+          type: string
+          format: date
+          example: '2025-01-01'
+        userId:
+          type: integer
+          example: 1
+        postId:
+          type: integer
+          example: 1
+    CommentTag:
+      type: object
+      properties:
+        postId:
+          type: integer
+          example: 1
+        tagId:
+          type: integer
+          example: 1
+paths:
+# Endpoints Users
+  /users:
+    get:
+      summary: Lista todos los usuarios
+      tags:
+        - Users
+      responses:
+        '200':
+          description: OK
+    post:
+      summary: Crear un nuevo usuario
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: Usuario creado con exito
+        '400':
+          description: Solicitud incorrecta
+  /users/{id}:
+    get:
+      summary: Obtener usuario por ID
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/UserIdParam'
+      responses:
+        '200':
+          description: Usuario encontrado
+        '404':
+          description: Usuario no encontrado
+    put:
+      summary: Actualizar un usuario por ID
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/UserIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: Usuario actualizado con exito
+        '400':
+          description: Solicitud incorrecta
+        '500':
+          description: Error interno del servidor
+        '404':
+          description: Usuario no encontrado
+    delete:
+      summary: Borrar un usuario por ID
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/UserIdParam'
+      responses:
+        '200':
+          description: Usuario eliminado con exito
+        '500':
+          description: Error interno del servidor
+        '404':
+          description: Usuario no encontrado
+  /users/{id}/posts:
+    get:
+      summary: obtener todos los posts de un usuario por ID
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/UserIdParam'
+      responses:
+        '200':
+          description: Usuario encontrado
+        '404':
+          description: Usuario no encontrado
+  /users/{id}/images:
+    get:
+      summary: Obtener todas las imagenes de un usuario por ID
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/UserIdParam'
+      responses:
+        '200':
+          description: Usuario encontrado
+        '404':
+          description: Usuario no encontrado
+  /users/{id}/create-post:
+    post:
+      summary: Crear un post para un usuario
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                descripcion:
+                  type: string
+                  example: Este es un nuevo post
+                creado:
+                  type: string
+                  format: date
+                  example: '2025-01-01'
+      parameters:
+        - $ref: '#/components/parameters/UserIdParam'
+      responses:
+        '201':
+          description: Post creado con exito
+        '400':
+          description: Solicitud incorrecta
+        '500':
+          description: Error interno del servidor
+        '404':
+          description: Usuario no encontrado
+  /users/{id}/create-post-full:
+    post:
+      summary: Crear un post con imagenes y tags para un usuario
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                descripcion:
+                  type: string
+                  example: Este es un nuevo post
+                creado:
+                  type: string
+                  format: date
+                  example: '2025-01-01'
+                urlImages:
+                  type: array
+                  items:
+                    type: string
+                  example: ["urlImagen1", "urlImagen2", "urlImagen3"]
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  example: ["tag1", "tag2", "tag3"]
+      parameters:
+        - $ref: '#/components/parameters/UserIdParam'
+      responses:
+        '201':
+          description: Post creado con exito
+        '400':
+          description: Solicitud incorrecta
+        '500':
+          description: Error interno del servidor
+        '404':
+          description: Usuario no encontrado
+# Endpoints Posts
+  /posts:
+    get:
+      summary: Lista todos los posts
+      tags:
+        - Posts
+      responses:
+        '200':
+          description: OK
+    post:
+      summary: Crear un nuevo post
+      tags:
+        - Posts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Post'
+      responses:
+        '201':
+          description: Post creado con exito
+        '400':
+          description: Solicitud incorrecta
+        '500':
+          description: Error interno del servidor
+        '404':
+          description: Usuario no encontrado
+  /posts/full-posts:
+    get:
+      summary: Lista todos los posts con imagenes y tags
+      tags:
+        - Posts
+      responses:
+        '200':
+          description: OK
+  /posts/comments:
+    get:
+      summary: Lista todos los posts con imagenes, tags y comentarios
+      tags:
+        - Posts
+      responses:
+        '200':
+          description: OK
+  /posts/{id}:
+    get:
+      summary: Obtener un post por ID
+      tags:
+        - Posts
+      parameters:
+        - $ref: '#/components/parameters/PostIdParam'
+      responses:
+        '200':
+          description: Post encontrado
+        '404':
+          description: Post no encontrado
+    put:
+      summary: Actualizar un post por ID
+      tags:
+        - Posts
+      parameters:
+        - $ref: '#/components/parameters/PostIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                descripcion:
+                  type: string
+                  example: descripcion del post actualizada
+      responses:
+        '201':
+          description: Post actualizado con exito
+        '400':
+          description: Solicitud incorrecta
+        '500':
+          description: Error interno del servidor
+        '404':
+          description: Post no encontrado
+    delete:
+      summary: Borrar un post por ID
+      tags:
+        - Posts
+      parameters:
+        - $ref: '#/components/parameters/PostIdParam'
+      responses:
+        '200':
+          description: Post eliminado con exito
+        '500':
+          description: Error interno del servidor
+        '404':
+          description: Post no encontrado
+  /posts/{id}/full-post:
+    get:
+        summary: Obtener post con imagenes y tags por ID
+        tags:
+          - Posts
+        parameters:
+          - $ref: '#/components/parameters/PostIdParam'
+        responses:
+          '200':
+            description: Post encontrado
+          '404':
+            description: Post no encontrado
+  /posts/{id}/comments:
+    get:
+        summary: Obtener post con imagenes, tags y comentarios por ID
+        tags:
+          - Posts
+        parameters:
+          - $ref: '#/components/parameters/PostIdParam'
+        responses:
+          '200':
+            description: Post encontrado
+          '404':
+            description: Post no encontrado
+  /posts/{id}/create-images:
+    post:
+        summary: Crear imagenes para un post
+        tags:
+          - Posts
+        parameters:
+          - $ref: '#/components/parameters/PostIdParam'
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  urlImages:
+                    type: array
+                    items:
+                      type: string
+                    example: ["urlImagen1", "urlImagen2", "urlImagen3"]
+        responses:
+          '201':
+            description: imagen/es cread/as con exito
+          '400':
+            description: Solicitud incorrecta
+          '404':
+            description: Post no encontrado
+  /posts/{id}/create-tags:
+    post:
+        summary: Crear tags para un post
+        tags:
+          - Posts
+        parameters:
+          - $ref: '#/components/parameters/PostIdParam'
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tags:
+                    type: array
+                    items:
+                      type: string
+                    example: ["tag1", "tag2", "tag3"]
+        responses:
+          '201':
+            description: Tag/s creados con exito
+          '400':
+            description: Solicitud incorrecta
+          '404':
+            description: Post no encontrado
+  /posts/{id}/create-comment:
+    post:
+        summary: Crear comentario para un post
+        tags:
+          - Posts
+        parameters:
+          - $ref: '#/components/parameters/PostIdParam'
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  contenido:
+                    type: string
+                    example: Este es un nuevo comentario
+                  creado:
+                    type: string
+                    format: date
+                    example: '2025-01-01'
+                  userId:
+                    type: integer
+                    example: 1
+        responses:
+          '201':
+            description: Comentario creado con exito
+          '400':
+            description: Solicitud incorrecta
+          '404':
+            description: Post no encontrado
+  # Endpoints images
+  /images:
+    get:
+      summary: Listar todas las imagenes
+      tags:
+        - Images
+      responses:
+        '200':
+          description: OK
+    post:
+      summary: Crear una nueva imagen para un post
+      tags:
+        - Images
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Post_image'
+      responses:
+        '201':
+          description: Imagen creada con exito
+        '400':
+          description: Solicitud incorrecta
+        '500':
+          description: Error interno del servidor
+        '404':
+          description: Post no encontrado
+  /images/{id}:
+    get:
+      summary: Obtener una imagen por ID
+      tags:
+        - Images
+      parameters:
+        - $ref: '#/components/parameters/ImageIdParam'
+      responses:
+        '200':
+          description: Imagen encontrada
+        '404':
+          description: Imagen no encontrada
+    put:
+      summary: Actualizar una imagen por ID
+      tags:
+        - Images
+      parameters:
+        - $ref: '#/components/parameters/ImageIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                url:
+                  type: string
+                  example: urlImagenActualizada1
+      responses:
+        '201':
+          description: Imagen actualizada con exito
+        '400':
+          description: Solicitud incorrecta
+        '500':
+          description: Error interno del servidor
+        '404':
+          description: Imagen no encontrada
+    delete:
+      summary: Borrar un imagen por ID
+      tags:
+        - Images
+      parameters:
+        - $ref: '#/components/parameters/ImageIdParam'
+      responses:
+        '200':
+          description: Imagen eliminada con exito
+        '500':
+          description: Error interno del servidor
+        '404':
+          description: Imagen no encontrada
+  /images/{id}/tags:
+    get:
+      summary: Obtener todos los tags de una imagen por ID
+      tags:
+        - Images
+      parameters:
+        - $ref: '#/components/parameters/ImageIdParam'
+      responses:
+        '200':
+          description: Imagen encontrada
+        '404':
+          description: Imagen no encontrada
+  # Endpoints Tags
+  /tags:
+    get:
+      summary: Lista todos los tags
+      tags:
+        - Tags
+      responses:
+        '200':
+          description: OK
+    post:
+      summary: Crear un nuevo tag
+      tags:
+        - Tags
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tag'
+      responses:
+        '201':
+          description: Tag creado con exito
+        '400':
+          description: Solicitud incorrecta
+        '500':
+          description: Error interno del servidor
+        '404':
+          description: Post no encontrado
+  /tags/{id}:
+    get:
+      summary: Obtener un tag por ID
+      tags:
+        - Tags
+      parameters:
+        - $ref: '#/components/parameters/TagIdParam'
+      responses:
+        '200':
+          description: Tag encontrado
+        '404':
+          description: Tag no encontrado
+    put:
+      summary: Actualizar un tag por ID
+      tags:
+        - Tags
+      parameters:
+        - $ref: '#/components/parameters/TagIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nombre:
+                  type: string
+                  example: tagActualizado1
+      responses:
+        '201':
+          description: Tag actualizado con exito
+        '400':
+          description: Solicitud incorrecta
+        '500':
+          description: Error interno del servidor
+        '404':
+          description: Tag no encontrado
+    delete:
+      summary: Borrar un tag por ID
+      tags:
+        - Tags
+      parameters:
+        - $ref: '#/components/parameters/TagIdParam'
+      responses:
+        '200':
+          description: Tag eliminado con exito
+        '500':
+          description: Error interno del servidor
+        '404':
+          description: Tag no encontrado
+  /tags/{id}/posts:
+    get:
+      summary: Obtener todos los posts de un tag por ID
+      tags:
+        - Tags
+      parameters:
+        - $ref: '#/components/parameters/TagIdParam'
+      responses:
+        '200':
+          description: Tag encontrado
+        '404':
+          description: Tag no encontrado
+  /tags/{id}/images:
+    get:
+      summary: Obtener todas las imagenes de un tag por ID
+      tags:
+        - Tags
+      parameters:
+        - $ref: '#/components/parameters/TagIdParam'
+      responses:
+        '200':
+          description: Tag encontrado
+        '404':
+          description: Tag no encontrado
+  /tags/{id}/users:
+    get:
+      summary: Obtener todos los usuarios de un tag por ID
+      tags:
+        - Tags
+      parameters:
+        - $ref: '#/components/parameters/TagIdParam'
+      responses:
+        '200':
+          description: Tag encontrado
+        '404':
+          description: Tag no encontrado
+  # Endpoints comments
+  /comments:
+    get:
+      summary: Lista todos los comentarios
+      tags:
+        - Comments
+      responses:
+        '200':
+          description: OK
+    post:
+      summary: Crear un nuevo comentario
+      tags:
+        - Comments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Comment'
+      responses:
+        '201':
+          description: Comentario creado con exito
+        '400':
+          description: Solicitud incorrecta
+        '500':
+          description: Error interno del servidor
+        '404':
+          description: Usuario o Post no encontrados
+  /comments/{id}:
+    get:
+      summary: Obtener un comentario por ID
+      tags:
+        - Comments
+      parameters:
+        - $ref: '#/components/parameters/CommentIdParam'
+      responses:
+        '200':
+          description: Comentario encontrado
+        '404':
+          description: Comentario no encontrado
+    put:
+      summary: Actualizar un comentario por ID
+      tags:
+        - Comments
+      parameters:
+        - $ref: '#/components/parameters/CommentIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                contenido:
+                  type: string
+                  example: Este es un comentario actualizado.
+      responses:
+        '201':
+          description: Comentario actualizado con exito
+        '400':
+          description: Solicitud incorrecta
+        '500':
+          description: Error interno del servidor
+        '404':
+          description: Comentario no encontrado
+    delete:
+      summary: Borrar un comentario por ID
+      tags:
+        - Comments
+      parameters:
+        - $ref: '#/components/parameters/CommentIdParam'
+      responses:
+        '200':
+          description: Comentario eliminado con exito
+        '500':
+          description: Error interno del servidor
+        '404':
+          description: Comentario no encontrado
+  /comments/recent:
+    get:
+      summary: Lista todos los comentarios con menos de 6 meses de antiguedad
+      tags:
+        - Comments
+      responses:
+        '200':
+          description: OK
+  /comments/post/{postId}/user/{userId}:
+    get:
+      summary: Lista todos los comentarios de un usuario en un post
+      tags:
+        - Comments
+      parameters:
+        - $ref: '#/components/parameters/postId'
+        - $ref: '#/components/parameters/userId'
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Usuario o Post no encontrados
+  /comments/recent/post/{id}:
+    get:
+      summary: Lista todos los comentarios de un post con menos de 6 meses de antiguedad
+      tags:
+        - Comments
+      parameters:
+        - $ref: '#/components/parameters/PostIdParam'
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Post no encontrado
+    

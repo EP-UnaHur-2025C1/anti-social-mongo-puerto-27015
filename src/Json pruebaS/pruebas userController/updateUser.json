@@ -1,0 +1,17 @@
+[
+    {
+        "nickName": "userUpdateNickName",
+        "fechaNacimiento": "1993-04-01",
+        "email": "userUpdateNickName@gmail.com"
+    },
+    {
+        "nickName": "userUpdateNickNameFechaNacimiento",
+        "fechaNacimiento": "1995-05-05",
+        "email": "userUpdateNickNameFechaNacimiento@gmail.com"
+    },
+    {
+        "nickName": "userUpdateNickNameFechaNacimientoEmail",
+        "fechaNacimiento": "2000-04-03",
+        "email": "userUpdateNickNameFechaNacimientoEmail@gmail.com"
+    }
+]

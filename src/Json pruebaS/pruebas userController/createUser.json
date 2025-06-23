@@ -1,0 +1,28 @@
+
+[
+    {
+        "nickName": "userPrueba1",
+        "fechaNacimiento": "1993-04-01",
+        "email": "userPrueba1@gmail.com"
+    },
+    {
+        "nickName": "userPrueba2",
+        "fechaNacimiento": "1992-04-02",
+        "email": "userPrueba2@gmail.com"
+    },
+    {
+        "nickName": "userPrueba3",
+        "fechaNacimiento": "1991-04-03",
+        "email": "userPrueba3@gmail.com"
+    },
+    {
+        "nickName": "userPrueba4",
+        "fechaNacimiento": "1990-04-04",
+        "email": "userPrueba4@gmail.com"
+    },
+    {
+        "nickName": "userPrueba5",
+        "fechaNacimiento": "1989-04-05",
+        "email": "userPrueba5@gmail.com"
+    }
+]

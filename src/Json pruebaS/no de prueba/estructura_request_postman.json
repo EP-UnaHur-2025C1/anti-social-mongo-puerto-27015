@@ -1,0 +1,19 @@
+[
+    {
+        "descripcion": "{{descripcion}}",
+        "creado": "{{creado}}"
+    },
+    {
+        "nickName": "{{nickName}}",
+        "fechaNacimiento": "{{fechaNacimiento}}",
+        "email": "{{email}}"
+    },
+    {
+        "url": "{{url}}"
+    },
+    {
+        "descripcion": "{{descripcion}}",
+        "creado": "{{creado}}",
+        "urlImangenes": "{{urlImangenes SACAR COMILLAS}}"
+    }
+]

@@ -1,0 +1,32 @@
+[
+    {
+        "contenido": "comentario de prueba 1",
+        "creado": "2025-05-01",
+        "userId": 4
+    },
+    {
+        "contenido": "comentario de prueba 2",
+        "creado": "2025-04-02",
+        "userId": 2
+    },
+    {
+        "contenido": "comentario de prueba 3",
+        "creado": "2025-3-03",
+        "userId": 3
+    },
+    {
+        "contenido": "comentario de prueba 4 antiguedad > 6 meses",
+        "creado": "2023-11-04",
+        "userId": 2
+    },
+    {
+        "contenido": "comentario de prueba 5 antiguedad > 6 meses",
+        "creado": "2022-12-05",
+        "userId": 1
+    },
+    {
+        "contenido": "comentario de prueba del futuro",
+        "creado": "2026-01-01",
+        "userId": 1
+    }
+]

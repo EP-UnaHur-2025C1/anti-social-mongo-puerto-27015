@@ -1,0 +1,21 @@
+
+[
+    {
+        "urlImages": ["urlImagenPrueba1", "urlImagenPrueba2"]
+    },
+    {
+        "urlImages": ["urlImagenPrueba3", "urlImagenPrueba4"]
+    },
+    {
+        "urlImages": ["urlImagenPrueba5"]
+    },
+    {
+        "urlImages": ["urlImagenPrueba6", "urlImagenPrueba7", "urlImagenPrueba8"]
+    },
+    {
+        "urlImages": ["urlImagenPrueba9", "urlImagenPrueba10"]
+    },
+    {
+        "urlImages": ["urlImagenPrueba11", "urlImagenPrueba12", "urlImagenPrueba13", "urlImagenPrueba14", "urlImagenPrueba15"]
+    }
+]

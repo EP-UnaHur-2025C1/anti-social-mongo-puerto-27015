@@ -1,0 +1,22 @@
+[
+    {
+        "nombre": "tag de prueba 1",
+        "postId": 1
+    },
+    {
+        "nombre": "tag de prueba 2",
+        "postId": 2
+    },
+    {
+        "nombre": "tag de prueba 3",
+        "postId": 3
+    },
+    {
+        "nombre": "tag de prueba 4",
+        "postId": 4
+    },
+    {
+        "nombre": "tag de prueba 5",
+        "postId": 5
+    }
+]

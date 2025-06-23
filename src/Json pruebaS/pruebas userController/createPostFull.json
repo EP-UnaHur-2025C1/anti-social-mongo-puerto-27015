@@ -1,0 +1,26 @@
+[
+    {
+        "descripcion": "post de prueba 1",
+        "creado": "2020-05-01",
+        "urlImages": ["urlImagenPrueba1", "urlImagenPrueba2"],
+        "tags": ["tagPrueba1", "tagPrueba2"] 
+    },
+    {
+        "descripcion": "post de prueba 2",
+        "creado": "2020-05-01",
+        "urlImages": ["urlImagenPrueba3", "urlImagenPrueba4"],
+        "tags": ["tagPrueba3", "tagPrueba4"] 
+    },
+    {
+        "descripcion": "post de prueba 3",
+        "creado": "2020-05-01",
+        "urlImages": ["urlImagenPrueba5", "urlImagenPrueba6"],
+        "tags": ["tagPrueba1", "tagPrueba2"] 
+    },
+    {
+        "descripcion": "post de prueba 4",
+        "creado": "2020-05-01",
+        "urlImages": ["urlImagenPrueba7", "urlImagenPrueba8"],
+        "tags": ["tagPrueba2", "tagPrueba3"] 
+    }
+]

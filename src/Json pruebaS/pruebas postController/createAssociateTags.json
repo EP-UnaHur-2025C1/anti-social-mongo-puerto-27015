@@ -1,0 +1,23 @@
+[
+    {
+        "tags": ["tagPrueba1"]
+    },
+    {
+        "tags": ["tagPrueba2"]
+    },
+    {
+        "tags": ["tagPrueba3"]
+    },
+    {
+        "tags": ["tagPrueba2", "tagPrueba3"]
+    },
+    {
+        "tags": ["tagPrueba5", "tagPrueba6", "tagPrueba4"]
+    },
+    {
+        "tags": ["tagPrueba1", "tagPrueba3"]
+    },
+    {
+        "tags": ["tagPrueba7", "tagPrueba5", "tagPrueba1"]
+    }
+]

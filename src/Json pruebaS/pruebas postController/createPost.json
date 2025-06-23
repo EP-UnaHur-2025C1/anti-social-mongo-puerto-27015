@@ -1,0 +1,27 @@
+[
+    {
+        "descripcion": "post de prueba 1",
+        "creado": "2020-05-01",
+        "userId": 1
+    },
+    {
+        "descripcion": "post de prueba 2",
+        "creado": "2020-05-02",
+        "userId": 2
+    },
+    {
+        "descripcion": "post de prueba 3",
+        "creado": "2020-05-03",
+        "userId": 3
+    },
+    {
+        "descripcion": "post de prueba 4",
+        "creado": "2020-05-04",
+        "userId": 4
+    },
+    {
+        "descripcion": "post de prueba del futuro",
+        "creado": "2026-05-05",
+        "userId": 5
+    }
+]

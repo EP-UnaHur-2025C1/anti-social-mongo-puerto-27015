@@ -1,0 +1,35 @@
+
+[
+    {
+        "url": "urlDePrueba1",
+        "postId": 1
+    },
+    {
+        "url": "urlDePrueba2",
+        "postId": 1
+    },
+    {
+        "url": "urlDePrueba3",
+        "postId": 2
+    },
+    {
+        "url": "urlDePrueba4",
+        "postId": 2
+    },
+    {
+        "url": "urlDePrueba5",
+        "postId": 3
+    },
+    {
+        "url": "urlDePrueba6",
+        "postId": 3
+    },
+    {
+        "url": "urlDePrueba7",
+        "postId": 4
+    },
+    {
+        "url": "urlDePrueba8",
+        "postId": 5
+    }
+]
